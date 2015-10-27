@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<h1>Hello world</h1>
+
+<div id="list_one">
+    <ul>
+        <li>one item</li>
+        <li><span>two</span> item</li>
+        <li><a href="">three item</a></li>
+    </ul>
+</div>
+
+<p>
+    sssssss sssssssss ssssssssss
+    sssssss sssssssss ssssssssss
+    sssssss sssssssss ssssssssss
+</p>
+
+<p id="demo">
+    rrrrrrr rrrrrrrr rrrrrrrrr rr
+    rrrrrrr rrrrrrrr rrrrrrrrr rr
+    rrrrrrr rrrrrrrr rrrrrrrrr rr
+</p>
+<script src="../Dom.js"></script>
+<script>
+    Dom.getById('list_one').callback(function () {
+        var self = this;
+        Dom.getById('demo').callback(function () {
+            this.style.background = 'rgba(50,50,50,0.4)';
+            self.style.background = 'red';
+
+            this.el.addEventListener('click',function(){
+                alert(1);
+            });
+        });
+    })
+        .getById('demo').el.addEventListener('click',function(){
+                alert('2');
+            });
+</script>
+</body>
+</html>
