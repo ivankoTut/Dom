@@ -9,10 +9,10 @@
 <h1>Hello world</h1>
 
 <div id="list_one">
-    <ul>
+    <ul class="test_ul">
         <li>one item</li>
         <li><span>two</span> item</li>
-        <li><a href="">three item</a></li>
+        <li class="test_li"><a href="" id="link">three item</a></li>
     </ul>
 </div>
 
@@ -29,20 +29,13 @@
 </p>
 <script src="../Dom.js"></script>
 <script>
-    Dom.getById('list_one').callback(function () {
-        var self = this;
-        Dom.getById('demo').callback(function () {
-            this.style.background = 'rgba(50,50,50,0.4)';
-            self.style.background = 'red';
+   Dom.getById('link').click(function(e){
+       e.preventDefault();
+      this.getParent('div');
+      this.getParent('.test');
+      this.getParent('#test');
+   });
 
-            this.el.addEventListener('click',function(){
-                alert(1);
-            });
-        });
-    })
-        .getById('demo').el.addEventListener('click',function(){
-                alert('2');
-            });
 </script>
 </body>
 </html>
