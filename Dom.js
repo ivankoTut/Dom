@@ -11,10 +11,34 @@ var Dom = (function(){
     'use strict';
 
     var AddProperty; // прототип с доп свойствами для нашего обьекта
+    var Dom;
 
     function errorLog(mess){
         throw new Error(mess);
     }
+
+    Dom = function(search){
+
+        if(typeof search === 'object'){
+            return new AddProperty(search);
+        }
+
+        if(typeof search === 'string') {
+
+            var query = search.split('').slice(1).join('');
+
+            switch (search.trim()[0]) {
+                case '.':
+                    return new AddProperty(document.getElementsByClassName(query));
+                    break;
+                case '#':
+                    return new AddProperty(document.getElementById(query));
+                    break;
+                default :
+
+            }
+        }
+    };
 
     AddProperty = function(obj){
         this.el = obj;
@@ -23,7 +47,7 @@ var Dom = (function(){
 
     AddProperty.prototype = {
         author: 'ivankotut',
-        version: '0.0.1',
+        version: '0.0.2',
         constructor: AddProperty,
         events: {},
         style: function(property){
@@ -120,17 +144,30 @@ var Dom = (function(){
             }
 
             if(parent.id.toLowerCase() === id.toLowerCase()){
-                return parent;
+                return new AddProperty(document.getElementById(id));
             }
 
             return this.getParentById(id,parent.parentNode)
+        },
+        log: function(){
+            console.log(this);
+            return this;
+        },
+        each: function(func){
+            var self = this,
+                i = 0;
+            for(var j in self.el) if(self.el.hasOwnProperty(j)){
+                func(self.el[j],i);
+                i++;
+            }
+            return this;
         }
     };
-
-    return {
+    /*{
         getById: function(id){
             return new AddProperty(document.getElementById(id));
         }
-    };
+    };*/
+    return Dom;
 
 }());

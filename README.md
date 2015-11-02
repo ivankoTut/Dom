@@ -1,24 +1,31 @@
 # Dom
-Не большая либа для работы с dom api. В большей степени написана ради усвоения этой темы. Version 0.0.1
+Не большая либа для работы с dom api. В большей степени написана ради усвоения этой темы. Version 0.0.2
+
+### Что нового:
+
+ - Переделан способ выбора узла()
+ - добавлен метод each принимает два аргумента : текущие узел и индекс
+ - добавлен метод log , он тупо высерает в консоль текущий обьект
+
 #### Примеры
 #
 ###### Поиск по id
 #
 ```sh
-Dom.getById('link');
+Dom('#link');
 ```
 
 ###### Добавить оброботку события клик и удалить обработчик
 #
 
 ```sh
-Dom.getById('link').click(function(e){
+Dom('#link').click(function(e){
    e.preventDefault();
    console.log(this); // текущий обьект (Dom.getById('link'))
    this.unClick(); // Удалить оброботчик клика
 });
 
-Dom.getById('link').unClick(); // Или так можно удалить обработчик клика
+Dom('#link').unClick(); // Или так можно удалить обработчик клика
 ```
 
 ###### Доступные свойства в выбронном обьекте:
@@ -27,12 +34,12 @@ Dom.getById('link').unClick(); // Или так можно удалить обработчик клика
 #
 ```sh
 // Без параметров возвращает ссылку на свойство style обьекта
-var linkStyle = Dom.getById('link').style();
+var linkStyle = Dom('#link').style();
 linkStyle.background = 'red';
 
 // В качестве параметра может принимать оъект (свойство: значение)
 
-Dom.getById('link').click(function(e){
+Dom('#link').click(function(e){
       e.preventDefault();
      this.style({
          background: 'red',
@@ -50,4 +57,22 @@ this.getParent('.test'); // по имени класа
 this.getParent('#test'); // по id
  // также в this доступен ближайшый родитель
 console.log(this.parent);
+```
+
+###### each
+#
+```sh
+Dom('.class-name').each(function(el,index){
+   Dom(el).style({
+       color: 'white', background: '#333'
+   });
+});
+```
+
+###### log
+#
+```sh
+Dom('.class-name').each(function(el,index){
+   Dom(el).log();
+});
 ```

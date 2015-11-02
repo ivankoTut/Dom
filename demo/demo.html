@@ -17,9 +17,9 @@
 </div>
 
 <p>
-    sssssss sssssssss ssssssssss
-    sssssss sssssssss ssssssssss
-    sssssss sssssssss ssssssssss
+    <span class="span">sssssss</span> sssssssss ssssssssss
+    sssssss <span class="span">sssssssss</span> ssssssssss
+    sssssss sssssssss <span class="span">ssssssssss</span>
 </p>
 
 <p id="demo">
@@ -29,13 +29,16 @@
 </p>
 <script src="../Dom.js"></script>
 <script>
-   Dom.getById('link').click(function(e){
+   Dom('#link').click(function(e){
        e.preventDefault();
-      this.getParent('div');
-      this.getParent('.test');
-      this.getParent('#test');
+       this.style({color:'red'});
    });
 
+   Dom('.span').each(function(el,index){
+       Dom(el).style({
+           color: 'white', background: '#333'
+       });
+   });
 </script>
 </body>
 </html>
