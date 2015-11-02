@@ -73,6 +73,11 @@ Dom('.class-name').each(function(el,index){
 #
 ```sh
 Dom('.class-name').each(function(el,index){
-   Dom(el).log();
+   Dom(el).log(); // обычный html узел
 });
+
+// если передать в each второй парметер true то el будет обьект типа Dom
+Dom('.class-name').each(function(el,index){
+   el.log(); // обьект типа Dom
+},true);
 ```

@@ -153,21 +153,21 @@ var Dom = (function(){
             console.log(this);
             return this;
         },
-        each: function(func){
+        each: function(func,dom){
             var self = this,
                 i = 0;
             for(var j in self.el) if(self.el.hasOwnProperty(j)){
-                func(self.el[j],i);
+               if(dom){
+                   func(new AddProperty(self.el[j]),i);
+               } else{
+                   func(self.el[j],i);
+               }
                 i++;
             }
             return this;
         }
     };
-    /*{
-        getById: function(id){
-            return new AddProperty(document.getElementById(id));
-        }
-    };*/
+
     return Dom;
 
 }());
